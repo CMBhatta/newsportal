@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Newsdetail;
+use App\Models\Category;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -11,10 +13,15 @@ class FrontendController extends Controller
 {
     public function index(){
         $details= Newsdetail::all();
-        return view('frontend.index',compact('details'));
+        $categories= Category::where('status',1)->get();
+        $videos= Video::all();
+        // dd($videos);
+        return view('frontend.index',compact('details', 'categories','videos'));
     }
      public function categori(){
-        return view('frontend.categori');
+        $details= Newsdetail::all();
+        $categories= Category::where('status',1)->get();
+        return view('frontend.categori',compact('categories','details'));
      }
 
      public function about(){
@@ -26,9 +33,11 @@ class FrontendController extends Controller
      public function contact(){
         return view('frontend.contact');
      }
-     public function details(){
+     public function details($id){
         $details= Newsdetail::all();
-        return view('frontend.details', compact('details'));
+        $categories= Category::all();
+        $news= Newsdetail::findOrFail($id);
+        return view('frontend.details', compact('details','categories','news'));
      }
 
      public function showLogin(){

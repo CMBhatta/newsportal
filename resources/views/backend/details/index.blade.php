@@ -40,6 +40,9 @@
                       </th>
                       
                       <th>
+                          Category Name
+                      </th>
+                      <th>
                           Trending News
                       </th>
                       <th>
@@ -68,6 +71,7 @@
                 @foreach ($details as $detail)
                 <tr>
                     <td>{{$detail->id}}</td>
+                    <td>{{$detail->category_name}}</td>
                     <td>{{$detail->trendnews}}</td>
                     <td>
                       @if($detail->photo)

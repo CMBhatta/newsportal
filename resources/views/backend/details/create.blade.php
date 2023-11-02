@@ -47,6 +47,14 @@
                     @csrf
                     @method('POST')
                     <div class="form-group">
+                        <label for="name">Category</label>
+                        <select name="category_name"> <!-- Change 'name' attribute -->
+                             @foreach($categories as $category)
+                            <option value="{{ $category->category_name }}">{{$category->category_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="trendnews">Today's trending news</label>
                         <textarea class="form-control" id="trendnews" name="trendnews" rows="3"></textarea>
                     </div>

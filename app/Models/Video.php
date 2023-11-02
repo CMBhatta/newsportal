@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Newsdetail extends Model
+class Video extends Model
 {
     use HasFactory;
-    protected $fillable = ['category_name','trendnews','photo', 'newshead','newsstart','description','status'];
+    protected $fillable = ['category_name','title','url','description','status'];
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 }
-

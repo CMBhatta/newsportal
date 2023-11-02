@@ -48,12 +48,13 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="name">Category</label>
-                                <select name="category_name"> <!-- Change 'name' attribute -->
-                                @foreach($categories as $category)
-                                <option value="{{ $category->category_name }}" {{ $category->category_name === $newsDetail->category_name ? 'selected' : '' }}>{{ $category->category_name }}</option>
-                                @endforeach
-                            </select>
-                      
+        
+                        <select name="category_name"> <!-- Change 'name' attribute -->
+                          
+                            @foreach($categories as $category)
+                            <option value="{{ $category->category_name }}">{{$category->category_name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="trendnews">Today's trending news</label>

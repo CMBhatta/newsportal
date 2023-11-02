@@ -231,11 +231,46 @@
             </ul> --}}
           </li>
           <li class="nav-item">
+            <a href="{{route('categories.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                News  Category
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{route('newsdetails.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 News  Details
                 <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{route('videos.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add Video
+                <span class="right badge badge-danger">link only</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('positions.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Advertisement Position
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('advertisements.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Advertisement 
               </p>
             </a>
           </li>

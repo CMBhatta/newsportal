@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Newsdetail;
 
@@ -9,13 +10,16 @@ class NewsdetailsController extends Controller
 {
     public function index(){
         $details= Newsdetail::all();
-        return  view('backend.details.index',compact('details'));
+        $categories= Category::all();
+        return  view('backend.details.index',compact('details', 'categories'));
     }
     public function create(){
-        return  view('backend.details.create');
+        $categories = Category::all();
+        return  view('backend.details.create',compact('categories'));
     }
     public function store(Request $request)
     {   $request->validate([
+        'category_name' => 'required',
         'trendnews' => 'required',
         'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
         'newshead' => 'required',
@@ -27,6 +31,7 @@ class NewsdetailsController extends Controller
     $request->photo->move(public_path('images/'), $fileName);
     
     $detail = new Newsdetail();
+    $detail->category_name = $request->input('category_name');
     $detail->trendnews = $request->input('trendnews');
     $detail->photo = $fileName;
     $detail->newshead = $request->input('newshead');
@@ -39,10 +44,12 @@ class NewsdetailsController extends Controller
 public function edit(string $id)
 {
     $detail = Newsdetail::find($id);
-    return view('backend.details.edit', compact('detail'));
+    $categories = Category::all();
+    return view('backend.details.edit', compact('detail','categories'));
 }
 public function update(Request $request, string $id){
     $request->validate([
+        'category_name' => 'required',
         'trendnews' => 'required',
         'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
         'newshead' => 'required',
@@ -63,6 +70,7 @@ public function update(Request $request, string $id){
         $request->photo->move(public_path('images/'), $fileName);
         $detail->photo = $fileName;
     }
+    $detail->category_name = $request->input('category_name');
     $detail->newshead = $request->input('newshead');
     $detail->newsstart = $request->input('newsstart');
     $detail->description = $request->input('description');
