@@ -50,7 +50,7 @@
                         <label for="name">Category</label>
                                 <select name="category_name"> <!-- Change 'name' attribute -->
                                 @foreach($categories as $category)
-                                <option value="{{ $category->category_name }}" {{ $category->category_name === $newsDetail->category_name ? 'selected' : '' }}>{{ $category->category_name }}</option>
+                                <option value="{{ $category->category_name }}" {{ $category->category_name === $detail->category_name ? 'selected' : '' }}>{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
                       

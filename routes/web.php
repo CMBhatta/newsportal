@@ -75,5 +75,10 @@ Route::delete('/position/{id}/delete', [AdPositionController::class, 'delete'])-
 Route::get('/advertisement', [AdvertisementController::class, 'index'])->name('advertisements.index');
 Route::get('/advertisement/create', [AdvertisementController::class, 'create'])->name('advertisements.create');
 Route::post('/advertisement/store', [AdvertisementController::class, 'store'])->name('advertisements.store');
+Route::get('/advertisement/{id}/edit', [AdvertisementController::class, 'edit'])->name('advertisements.edit');
+Route::put('/advertisement/{id}/update', [AdvertisementController::class, 'update'])->name('advertisements.update');
+
+Route::delete('/advertisement/{id}/delete', [AdvertisementController::class, 'delete'])->name('advertisements.delete');
+
 
 

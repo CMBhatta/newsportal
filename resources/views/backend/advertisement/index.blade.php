@@ -37,6 +37,7 @@
               <tr>
                   <th>ID</th>
                   <th>Title</th>
+                  <th>Image</th>
                   <th>Position</th>
                   <th>Description</th>
                   <th>URL</th>
@@ -51,20 +52,30 @@
                 <tr>
                     <td>{{ $advertisement->id }}</td>
                     <td>{{ $advertisement->title }}</td>
-                    <td>{{ $advertisement->position->position_id }}</td>
-                    <td>{{ $advertisement->description }}</td>
+                    <td>
+                      @if($advertisement->image)
+                      <img src="{{ asset('images/'.$advertisement->image) }}" alt="About Photo">
+
+                                      @else 
+                                      <span>No image found!</span>
+                                      @endif
+                    </td>
+                    <td>{{ $advertisement->position->position }}</td>
+                    <td>{{$advertisement->description}}</td>
                     <td>{{ $advertisement->url }}</td>
                     <td>{{ $advertisement->start_date }}</td>
                     <td>{{ $advertisement->end_date }}</td>
                     <td>{{ $advertisement->status }}</td>
                     <td>
                       
-                        <a href="" class="btn btn-primary">Edit</a>
-                        <form action="" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this advertisement?')">Delete</button>
-                        </form>
+                        <a href="{{ route('advertisements.edit', $advertisement->id) }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ route('advertisements.delete',$advertisement->id) }}" method="POST"
+                          style="display: inline-block;">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-danger"
+                              onclick="return confirm('Are you sure you want to delete this position?')">Delete</button>
+                      </form>
                     </td>
                 </tr>
             @endforeach

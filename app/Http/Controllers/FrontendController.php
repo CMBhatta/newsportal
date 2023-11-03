@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
 use App\Models\Newsdetail;
 use App\Models\Category;
 use App\Models\Video;
@@ -9,14 +10,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
+use Illuminate\Support\Carbon;
+
 class FrontendController extends Controller
 {
     public function index(){
-        $details= Newsdetail::all();
+        $details= Newsdetail::orderBy('created_at', 'desc')->get();
         $categories= Category::where('status',1)->get();
-        $videos= Video::all();
+        $videos= Video::orderBy('created_at', 'desc')->get();
+        $advertisements= $this->getActiveAdvertisements();
         // dd($videos);
-        return view('frontend.index',compact('details', 'categories','videos'));
+        return view('frontend.index',compact('details', 'categories','videos','advertisements'));
+    }
+    private function getActiveAdvertisements()
+    {
+        return Advertisement::where('status', 'active')
+            ->where('start_date', '<=', Carbon::now())
+            ->where('end_date', '>=', Carbon::now())
+            ->get();
     }
      public function categori(){
         $details= Newsdetail::all();
